@@ -113,8 +113,16 @@ class UserRepository {
       return e.message;
     } on FirebaseAuthException catch (e) {
       if (e.code == "account-exists-with-different-credential") {
-        _facebookAuth.logOut();
-        return "An account already exists with Email ${e.email}. Please use sign in by Google.";
+        var fbCredential = e.credential;
+        var googleProvider = GoogleAuthProvider();
+        googleProvider.setCustomParameters({'login_hint': e.email});
+        await _firebaseAuth
+            .signInWithPopup(googleProvider)
+            .then((result) => {result.user.linkWithCredential(fbCredential)});
+
+        // _facebookAuth.logOut();
+        // return "An account already exists with Email ${e.email}. Please use sign in by Google.";
+        return "";
       } else
         return e.message;
     }
