@@ -23,7 +23,7 @@ dependencies:
   firebase_storage: ^7.0.0
   firebase_messaging: 
   google_sign_in: ^4.5.6
-  cloud_firestore: 0.16.0
+  cloud_firestore: ^0.16.0
   sign_in_with_apple: ^2.5.4
   crypto: ^2.1.5
   flutter_facebook_auth: ^2.0.2
