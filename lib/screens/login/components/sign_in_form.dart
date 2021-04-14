@@ -79,8 +79,9 @@ class _SignInFormState extends State<SignInForm> {
                           //so no need to implement success case
                           //we just handle when login fail
                           //when login fail, an string error will be return
+
                           String error = await _userRepository
-                              .signInWithEmailAndPass(email, password);
+                              .signInWithEmailAndPass(email, password ?? "");
                           setState(() {
                             isLoading = false;
                             if (error != "") {
@@ -184,16 +185,16 @@ class _SignInFormState extends State<SignInForm> {
         return null;
       },
       validator: (value) {
-        if (value.isEmpty && !error.contains(kPassNullError))
-          setState(() {
-            error.add(kPassNullError);
-          });
-        else if (value.length < 6 &&
-            !error.contains(kShortPassError) &&
-            !error.contains(kPassNullError))
-          setState(() {
-            error.add(kShortPassError);
-          });
+        // if (value.isEmpty && !error.contains(kPassNullError))
+        //   setState(() {
+        //     error.add(kPassNullError);
+        //   });
+        // else if (value.length < 6 &&
+        //     !error.contains(kShortPassError) &&
+        //     !error.contains(kPassNullError))
+        //   setState(() {
+        //     error.add(kShortPassError);
+        //   });
         return null;
       },
     );

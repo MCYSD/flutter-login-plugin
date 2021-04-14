@@ -68,8 +68,16 @@ class UserRepository {
     return _firebaseAuth.currentUser != null;
   }
 
-  Future<String> signInWithGoogle() async {
-    String errors = "";
+  ///Signin with Google account
+  ///
+  ///If [credential] is null means sign in normal with google account
+  ///
+  ///If [credential] is not null, connect to Facebook credential after sign in success
+  ///
+  ///Because Google and Facebook use difference AuthProvider so we need to link credential
+  ///
+  ///If not link credential, user only sign in with either Facebook or Google
+  Future<dynamic> signInWithGoogle({AuthCredential credential}) async {
     try {
       final GoogleSignInAccount googleSignInAccount =
           await _googleSignIn.signIn();
@@ -79,23 +87,57 @@ class UserRepository {
           idToken: googleSignInAuthentication.idToken,
           accessToken: googleSignInAuthentication.accessToken);
 
-      await _firebaseAuth.signInWithCredential(authCredential);
+      //get list login method has been register
+      List<String> listLoginMethod = await _firebaseAuth
+          .fetchSignInMethodsForEmail(googleSignInAccount.email);
+
+      //if user already sign in with facebook and not sign in with google
+      //require user sign in with facebook to link credential
+      if (listLoginMethod.contains("facebook.com") &&
+          !listLoginMethod.contains("google.com")) {
+        return authCredential;
+      } else {
+        if (credential == null) {
+          await _firebaseAuth.signInWithCredential(authCredential);
+        } else {
+          await _firebaseAuth
+              .signInWithCredential(authCredential)
+              .then((value) => value.user.linkWithCredential(credential));
+        }
+      }
       return "";
     } catch (e) {
       return e.toString();
     }
   }
 
-  Future<String> signInWithFacebook() async {
-    String errors = "";
+  ///Signin with Facebook account
+  ///
+  ///If [credential] is null means sign in normal with Facebook account
+  ///
+  ///If [credential] is not null, connect to Google credential after sign in success
+  ///
+  ///Because Google and Facebook use difference AuthProvider so we need to link credential
+  ///
+  ///If not link credential, user only sign in with either Facebook or Google
+  Future<dynamic> signInWithFacebook({AuthCredential credential}) async {
     try {
       // by default the login method has the next permissions ['email','public_profile']
       AccessToken accessToken = await _facebookAuth.login();
 
       // sign in with facebook credential
-      FacebookAuthCredential credential =
+      FacebookAuthCredential fbCredential =
           FacebookAuthProvider.credential(accessToken.token);
-      await _firebaseAuth.signInWithCredential(credential);
+
+      //credential null mean login by facebook credential
+      //else login by facebook first, after that link to credential
+      if (credential == null) {
+        await _firebaseAuth.signInWithCredential(fbCredential);
+      } else {
+        await _firebaseAuth
+            .signInWithCredential(fbCredential)
+            .then((value) => value.user.linkWithCredential(credential));
+      }
 
       return "";
     } on FacebookAuthException catch (e) {
@@ -113,16 +155,7 @@ class UserRepository {
       return e.message;
     } on FirebaseAuthException catch (e) {
       if (e.code == "account-exists-with-different-credential") {
-        var fbCredential = e.credential;
-        var googleProvider = GoogleAuthProvider();
-        googleProvider.setCustomParameters({'login_hint': e.email});
-        await _firebaseAuth
-            .signInWithPopup(googleProvider)
-            .then((result) => {result.user.linkWithCredential(fbCredential)});
-
-        // _facebookAuth.logOut();
-        // return "An account already exists with Email ${e.email}. Please use sign in by Google.";
-        return "";
+        return e.credential;
       } else
         return e.message;
     }
