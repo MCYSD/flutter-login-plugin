@@ -2,17 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6663389b-19a9-4614-8972-01dc4ed11d55" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/example/ios/GoogleService-Info.plist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/Flutter/Debug.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Flutter/Debug.xcconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/Flutter/Release.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Flutter/Release.xcconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/Podfile" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Podfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/Podfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Podfile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/Runner.xcworkspace/contents.xcworkspacedata" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Runner.xcworkspace/contents.xcworkspacedata" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/Runner.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/Runner/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Runner/Info.plist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firebase_login.iml" beforeDir="false" afterPath="$PROJECT_DIR$/firebase_login.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -48,21 +42,21 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1424" height="246" key="GridCell.Tab.0.bottom" timestamp="1618419162253">
+    <state width="851" height="259" key="GridCell.Tab.0.bottom" timestamp="1618480553383">
       <screen x="0" y="25" width="1920" height="977" />
     </state>
-    <state width="1424" height="246" key="GridCell.Tab.0.bottom/0.25.1920.977@0.25.1920.977" timestamp="1618419162253" />
-    <state width="1424" height="246" key="GridCell.Tab.0.center" timestamp="1618419162249">
+    <state width="851" height="259" key="GridCell.Tab.0.bottom/0.25.1920.977@0.25.1920.977" timestamp="1618480553383" />
+    <state width="851" height="259" key="GridCell.Tab.0.center" timestamp="1618480553382">
       <screen x="0" y="25" width="1920" height="977" />
     </state>
-    <state width="1424" height="246" key="GridCell.Tab.0.center/0.25.1920.977@0.25.1920.977" timestamp="1618419162249" />
-    <state width="1424" height="246" key="GridCell.Tab.0.left" timestamp="1618419162248">
+    <state width="851" height="259" key="GridCell.Tab.0.center/0.25.1920.977@0.25.1920.977" timestamp="1618480553382" />
+    <state width="851" height="259" key="GridCell.Tab.0.left" timestamp="1618480553381">
       <screen x="0" y="25" width="1920" height="977" />
     </state>
-    <state width="1424" height="246" key="GridCell.Tab.0.left/0.25.1920.977@0.25.1920.977" timestamp="1618419162248" />
-    <state width="1424" height="246" key="GridCell.Tab.0.right" timestamp="1618419162252">
+    <state width="851" height="259" key="GridCell.Tab.0.left/0.25.1920.977@0.25.1920.977" timestamp="1618480553381" />
+    <state width="851" height="259" key="GridCell.Tab.0.right" timestamp="1618480553382">
       <screen x="0" y="25" width="1920" height="977" />
     </state>
-    <state width="1424" height="246" key="GridCell.Tab.0.right/0.25.1920.977@0.25.1920.977" timestamp="1618419162252" />
+    <state width="851" height="259" key="GridCell.Tab.0.right/0.25.1920.977@0.25.1920.977" timestamp="1618480553382" />
   </component>
 </project>
