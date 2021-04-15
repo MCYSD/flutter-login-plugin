@@ -185,7 +185,8 @@ class UserRepository {
         ],
         webAuthenticationOptions: WebAuthenticationOptions(
           // TODO: Set the `clientId` and `redirectUri` arguments to the values you entered in the Apple Developer portal during the setup
-          clientId: 'mcysd.flutter.plugin.firebaselogin',
+          // clientId: 'mcysd.flutter.plugin.firebaselogin',
+          clientId: 'mcysd.plugin.firebaselogin',
           redirectUri: Uri.parse(
             'https://fiutter-tutorials.firebaseapp.com/__/auth/handler',
           ),
