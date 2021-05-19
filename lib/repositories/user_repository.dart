@@ -121,13 +121,12 @@ class UserRepository {
   ///
   ///If not link credential, user only sign in with either Facebook or Google
   Future<dynamic> signInWithFacebook({AuthCredential credential}) async {
-    try {
-      // by default the login method has the next permissions ['email','public_profile']
-      AccessToken accessToken = await _facebookAuth.login();
-
+    // by default the login method has the next permissions ['email','public_profile']
+    LoginResult loginResult = await _facebookAuth.login();
+    if (loginResult.status == LoginStatus.success) {
       // sign in with facebook credential
       FacebookAuthCredential fbCredential =
-          FacebookAuthProvider.credential(accessToken.token);
+          FacebookAuthProvider.credential(loginResult.accessToken.token);
 
       //credential null mean login by facebook credential
       //else login by facebook first, after that link to credential
@@ -140,24 +139,10 @@ class UserRepository {
       }
 
       return "";
-    } on FacebookAuthException catch (e) {
-      switch (e.errorCode) {
-        case FacebookAuthErrorCode.OPERATION_IN_PROGRESS:
-          print("You have a previous login operation in progress");
-          break;
-        case FacebookAuthErrorCode.CANCELLED:
-          print("login cancelled");
-          break;
-        case FacebookAuthErrorCode.FAILED:
-          print("login failed");
-          break;
-      }
-      return e.message;
-    } on FirebaseAuthException catch (e) {
-      if (e.code == "account-exists-with-different-credential") {
-        return e.credential;
-      } else
-        return e.message;
+    } else if (loginResult.status == LoginStatus.failed) {
+      return loginResult.message;
+    } else if (loginResult.status == LoginStatus.cancelled) {
+      return "Your request has cancelled";
     }
   }
 
