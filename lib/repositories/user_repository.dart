@@ -121,28 +121,35 @@ class UserRepository {
   ///
   ///If not link credential, user only sign in with either Facebook or Google
   Future<dynamic> signInWithFacebook({AuthCredential credential}) async {
-    // by default the login method has the next permissions ['email','public_profile']
-    LoginResult loginResult = await _facebookAuth.login();
-    if (loginResult.status == LoginStatus.success) {
-      // sign in with facebook credential
-      FacebookAuthCredential fbCredential =
-          FacebookAuthProvider.credential(loginResult.accessToken.token);
+    try {
+      // by default the login method has the next permissions ['email','public_profile']
+      LoginResult loginResult = await _facebookAuth.login();
+      if (loginResult.status == LoginStatus.success) {
+        // sign in with facebook credential
+        FacebookAuthCredential fbCredential =
+            FacebookAuthProvider.credential(loginResult.accessToken.token);
 
-      //credential null mean login by facebook credential
-      //else login by facebook first, after that link to credential
-      if (credential == null) {
-        await _firebaseAuth.signInWithCredential(fbCredential);
-      } else {
-        await _firebaseAuth
-            .signInWithCredential(fbCredential)
-            .then((value) => value.user.linkWithCredential(credential));
+        //credential null mean login by facebook credential
+        //else login by facebook first, after that link to credential
+        if (credential == null) {
+          await _firebaseAuth.signInWithCredential(fbCredential);
+        } else {
+          await _firebaseAuth
+              .signInWithCredential(fbCredential)
+              .then((value) => value.user.linkWithCredential(credential));
+        }
+
+        return "";
+      } else if (loginResult.status == LoginStatus.failed) {
+        return loginResult.message;
+      } else if (loginResult.status == LoginStatus.cancelled) {
+        return "Your request has cancelled";
       }
-
-      return "";
-    } else if (loginResult.status == LoginStatus.failed) {
-      return loginResult.message;
-    } else if (loginResult.status == LoginStatus.cancelled) {
-      return "Your request has cancelled";
+    } on FirebaseAuthException catch (e) {
+      if (e.code == "account-exists-with-different-credential") {
+        return e.credential;
+      } else
+        return e.message;
     }
   }
 
