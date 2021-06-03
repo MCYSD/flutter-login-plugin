@@ -24,7 +24,9 @@ class _LoginSocialState extends State<LoginSocial> {
         CircleIconButton(
           backgroundColor: Colors.yellow,
           icon: "assets/icons/kakao-icon.svg",
-          onPress: () {},
+          onPress: () async {
+            await handleSignInWithKakao(context);
+          },
         ),
         CircleIconButton(
           icon: "assets/icons/google-icon.svg",
@@ -47,6 +49,23 @@ class _LoginSocialState extends State<LoginSocial> {
         ),
       ],
     );
+  }
+
+  Future handleSignInWithKakao(BuildContext context) async {
+    dynamic error = await _userRepository.signInWithKakao();
+    if (error is String) {
+      if (error.isNotEmpty)
+        showDialog(
+          context: context,
+          builder: (context) => FailDialog(
+            context: context,
+            title: "Login Fail",
+            message: error,
+          ),
+        );
+    } else if (error is AuthCredential) {
+      showDialogRequireLoginByGooogle(error);
+    }
   }
 
   ///Return an [AuthCredential] or [Error]

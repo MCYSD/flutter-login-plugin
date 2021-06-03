@@ -8,6 +8,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+import 'package:kakao_flutter_sdk/auth.dart';
+import 'package:kakao_flutter_sdk/common.dart';
 
 final rootURL = "gs://mycounselor-c5110.appspot.com";
 
@@ -66,6 +68,32 @@ class UserRepository {
 
   Future<bool> isSignedIn() async {
     return _firebaseAuth.currentUser != null;
+  }
+
+  Future<dynamic> signInWithKakao() async {
+    try {
+      final installed = await isKakaoTalkInstalled();
+      final authCode = installed
+          ? await AuthCodeClient.instance.requestWithTalk()
+          : await AuthCodeClient.instance.request();
+      AccessTokenResponse token =
+          await AuthApi.instance.issueAccessToken(authCode);
+      // Store access token in AccessTokenStore for future API requests.
+      AccessTokenStore.instance.toStore(token);
+
+      print("Kakao token: ${token.accessToken}");
+
+      return "";
+    } on KakaoAuthException catch (e) {
+      print("****KakaoLoginFail cause ${e.message}");
+      return e.toString();
+    } on KakaoClientException catch (e) {
+      print("****KakaoLoginFail cause ${e.message}");
+      return e.toString();
+    } catch (e) {
+      print("****KakaoLoginFail cause ${e.message}");
+      return e.toString();
+    }
   }
 
   ///Signin with Google account
@@ -147,6 +175,7 @@ class UserRepository {
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == "account-exists-with-different-credential") {
+        print("****Hello Ross, co do day ne");
         return e.credential;
       } else
         return e.message;
