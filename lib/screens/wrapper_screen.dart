@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_login/screens/login/login_screen.dart';
+import 'package:firebase_login/screens/verify_email/verify_email_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -20,6 +21,9 @@ class WrapperScreen extends StatelessWidget {
       return LoginScreen();
     } else {
       FirebaseLogin.uid = user.uid;
+      if (user.emailVerified == false) {
+        return VerifyEmailScreen();
+      }
       return homeScreen;
     }
   }

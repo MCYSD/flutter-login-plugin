@@ -31,6 +31,8 @@ class UserRepository {
         _firebaseFirestore = firebaseFirestore ?? FirebaseFirestore.instance,
         _facebookAuth = facebookAuth ?? FacebookAuth.instance;
 
+  Stream<User> get user => _firebaseAuth.userChanges();
+
   //sign up with email and password
   //return value is a error string
   //if sign up success, the OnUserStateChange auto trigger
@@ -41,6 +43,14 @@ class UserRepository {
     } on FirebaseAuthException catch (e) {
       return e.message;
     }
+    return "";
+  }
+
+  Future<dynamic> verifyEmail() async {
+    try {
+      await _firebaseAuth.currentUser.sendEmailVerification();
+    } catch (e) {}
+
     return "";
   }
 
@@ -64,6 +74,14 @@ class UserRepository {
       _googleSignIn.signOut(),
       _facebookAuth.logOut()
     ]);
+  }
+
+  Future<void> reloadUser() async {
+    return _firebaseAuth.currentUser.reload();
+  }
+
+  Stream<User> obserUserChange() {
+    return _firebaseAuth.userChanges();
   }
 
   Future<bool> isSignedIn() async {
@@ -226,11 +244,9 @@ class UserRepository {
     }
   }
 
-  Future<User> getUserInfo() async {
+  User getUserInfo() {
     return _firebaseAuth.currentUser;
   }
-
-  Stream<User> get user => _firebaseAuth.authStateChanges();
 
   Future<String> sendPasswordResetEmail(String email) async {
     try {

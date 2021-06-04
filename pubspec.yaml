@@ -64,6 +64,7 @@ flutter:
     - packages/firebase_login/assets/icons/facebook-2.svg
     - packages/firebase_login/assets/icons/Apple.svg
     - packages/firebase_login/assets/animation/congrats.json
+    - packages/firebase_login/assets/animation/send_email.json
   #
   # For details regarding assets in packages, see
   # https://flutter.dev/assets-and-images/#from-packages
