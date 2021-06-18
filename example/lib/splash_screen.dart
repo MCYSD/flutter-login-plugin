@@ -21,8 +21,11 @@ class _SplashSreenState extends State<SplashSreen> {
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) =>
-                  FirebaseLogin.firebaseLoginScreen(HomeScreen()),
+              builder: (context) => FirebaseLogin.firebaseLoginScreen(
+                  homeScreen: HomeScreen(),
+                  onLoginSuccess: (user) {
+                    print("Login success: Username = ${user.displayName}");
+                  }),
             ));
       }
     });

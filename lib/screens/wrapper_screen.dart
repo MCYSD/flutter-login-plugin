@@ -8,8 +8,11 @@ import '../firebase_login.dart';
 
 class WrapperScreen extends StatelessWidget {
   final Widget homeScreen;
+  final void Function(User) onLoginSuccess;
 
-  const WrapperScreen({Key key, @required this.homeScreen}) : super(key: key);
+  const WrapperScreen(
+      {Key key, @required this.homeScreen, @required this.onLoginSuccess})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
@@ -21,6 +24,8 @@ class WrapperScreen extends StatelessWidget {
       return LoginScreen();
     } else {
       FirebaseLogin.uid = user.uid;
+      FirebaseLogin.userInfo = user;
+      onLoginSuccess.call(user);
       if (user.emailVerified == false) {
         return VerifyEmailScreen();
       }

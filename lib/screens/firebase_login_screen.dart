@@ -6,16 +6,20 @@ import 'package:provider/provider.dart';
 
 class FirebaseLoginScreen extends StatelessWidget {
   final Widget homeScreen;
-
-  const FirebaseLoginScreen({Key key, @required this.homeScreen})
+  final void Function(User) onLoginSuccess;
+  const FirebaseLoginScreen(
+      {Key key, @required this.homeScreen, @required this.onLoginSuccess})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return StreamProvider<User>.value(
-        value: UserRepository().user,
-        child: WrapperScreen(
-          homeScreen: homeScreen,
-        ));
+      value: UserRepository().user,
+      initialData: null,
+      child: WrapperScreen(
+        onLoginSuccess: onLoginSuccess,
+        homeScreen: homeScreen,
+      ),
+    );
   }
 }

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_login/repositories/user_repository.dart';
 import 'package:firebase_login/screens/firebase_login_screen.dart';
 import 'package:firebase_login/screens/login/login_screen.dart';
@@ -20,11 +21,14 @@ class FirebaseLogin {
   static Widget _homeScreen;
   static Widget get homeScreen => _homeScreen;
   static String uid;
+  static User userInfo;
 
-  static Widget firebaseLoginScreen(Widget homeScreen) {
+  static Widget firebaseLoginScreen(
+      {Widget homeScreen, void Function(User) onLoginSuccess}) {
     _homeScreen = homeScreen;
     return FirebaseLoginScreen(
       homeScreen: homeScreen,
+      onLoginSuccess: onLoginSuccess,
     );
   }
 
