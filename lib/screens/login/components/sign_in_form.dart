@@ -18,7 +18,7 @@ class SignInForm extends StatefulWidget {
 
 class _SignInFormState extends State<SignInForm> {
   final _userRepository = UserRepository();
-  String email, password;
+  String? email, password;
   bool isRememberMe = false;
   final _formKey = GlobalKey<FormState>();
   final List<String> error = [];
@@ -69,9 +69,9 @@ class _SignInFormState extends State<SignInForm> {
                   DefaultButton(
                     text: "Continue",
                     onPress: () async {
-                      if (_formKey.currentState.validate()) {
+                      if (_formKey.currentState!.validate()) {
                         if (error.isEmpty) {
-                          _formKey.currentState.save();
+                          _formKey.currentState!.save();
                           setState(() {
                             isLoading = true;
                           });
@@ -80,8 +80,9 @@ class _SignInFormState extends State<SignInForm> {
                           //we just handle when login fail
                           //when login fail, an string error will be return
 
-                          String error = await _userRepository
-                              .signInWithEmailAndPass(email, password ?? "");
+                          String? error =
+                              await _userRepository.signInWithEmailAndPass(
+                                  email ?? "", password ?? "");
                           setState(() {
                             isLoading = false;
                             if (error != "") {
@@ -229,11 +230,11 @@ class _SignInFormState extends State<SignInForm> {
         return null;
       },
       validator: (value) {
-        if (value.isEmpty && !error.contains(kEmailNullError))
+        if ((value ?? "").isEmpty && !error.contains(kEmailNullError))
           setState(() {
             error.add(kEmailNullError);
           });
-        else if (!emailValidatorRegExp.hasMatch(value) &&
+        else if (!emailValidatorRegExp.hasMatch((value ?? "")) &&
             !error.contains(kEmailNullError) &&
             !error.contains(kInvalidEmailError))
           setState(() {

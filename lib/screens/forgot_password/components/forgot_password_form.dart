@@ -37,12 +37,12 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
             DefaultButton(
               text: "Send verify code",
               onPress: () async {
-                if (_formKey.currentState.validate()) {
+                if (_formKey.currentState!.validate()) {
                   if (_errors.isEmpty) {
-                    _formKey.currentState.save();
-                    String error =
+                    _formKey.currentState!.save();
+                    String? error =
                         await _userRepository.sendPasswordResetEmail(_email);
-                    if (error.isEmpty)
+                    if ((error ?? "").isEmpty)
                       Provider.of<ForgotPasswordModel>(context, listen: false)
                           .setFormDisplay(
                               ForgotPasswordModel.RESET_LINK_HAS_SENT,
@@ -92,13 +92,13 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
         labelText: "Enter your email address",
       ),
       validator: (value) {
-        if (value.isEmpty && !_errors.contains(kEmailNullError)) {
+        if ((value ?? "").isEmpty && !_errors.contains(kEmailNullError)) {
           setState(() {
             _errors.add(kEmailNullError);
           });
-        } else if (!emailValidatorRegExp.hasMatch(value) &&
+        } else if (!emailValidatorRegExp.hasMatch(value ?? "") &&
             !_errors.contains(kInvalidEmailError) &&
-            value.isNotEmpty) {
+            (value ?? "").isNotEmpty) {
           setState(() {
             _errors.add(kInvalidEmailError);
           });
@@ -118,7 +118,7 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
           });
         }
       },
-      onSaved: (newValue) => _email = newValue,
+      onSaved: (newValue) => _email = newValue!,
     );
   }
 }

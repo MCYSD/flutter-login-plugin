@@ -38,7 +38,7 @@ class Body extends StatelessWidget {
       case ForgotPasswordModel.FORGOT_PASSWORD_FORM:
         return ForgotPasswordHeader();
       case ForgotPasswordModel.ENTER_VERIFY_CODE_FORM:
-        return EnterVefiryCodeHeader(email: forgotPasswordModel.getEmail);
+        return EnterVefiryCodeHeader(email: forgotPasswordModel.getEmail!);
       case ForgotPasswordModel.SET_NEW_PASSWORD_FORM:
         return SetNewPasswordHeader();
       case ForgotPasswordModel.UPDATE_SUCCESS:

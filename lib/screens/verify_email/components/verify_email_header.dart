@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import '../../common_utils.dart';
 
 class VerifyEmailHeader extends StatelessWidget {
-  final String email;
+  final String? email;
 
-  const VerifyEmailHeader({Key key, this.email}) : super(key: key);
+  const VerifyEmailHeader({Key? key, this.email}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Column(

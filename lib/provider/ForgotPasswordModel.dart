@@ -9,14 +9,14 @@ class ForgotPasswordModel extends ChangeNotifier {
   static const int RESET_LINK_HAS_SENT = 4;
 
   int _formDisplay = FORGOT_PASSWORD_FORM;
-  String _email = "";
+  String? _email = "";
 
-  void setFormDisplay(int formDisplay, {String email}) {
+  void setFormDisplay(int formDisplay, {String? email}) {
     _formDisplay = formDisplay;
     _email = email;
     notifyListeners();
   }
 
   int get getFormDisplay => _formDisplay;
-  String get getEmail => _email;
+  String? get getEmail => _email;
 }

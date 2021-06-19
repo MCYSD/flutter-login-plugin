@@ -5,7 +5,7 @@ import '../../common_utils.dart';
 class EnterVefiryCodeHeader extends StatelessWidget {
   final String email;
 
-  const EnterVefiryCodeHeader({Key key, @required this.email})
+  const EnterVefiryCodeHeader({Key? key, required this.email})
       : super(key: key);
   @override
   Widget build(BuildContext context) {

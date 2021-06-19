@@ -6,9 +6,9 @@ class CircleIconButton extends StatelessWidget {
   final GestureTapCallback onPress;
   final Color backgroundColor;
   const CircleIconButton(
-      {Key key,
-      @required this.icon,
-      @required this.onPress,
+      {Key? key,
+      required this.icon,
+      required this.onPress,
       this.backgroundColor = Colors.white})
       : super(key: key);
 

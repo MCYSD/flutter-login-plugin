@@ -11,11 +11,11 @@ class WrapperScreen extends StatelessWidget {
   final void Function(User) onLoginSuccess;
 
   const WrapperScreen(
-      {Key key, @required this.homeScreen, @required this.onLoginSuccess})
+      {Key? key, required this.homeScreen, required this.onLoginSuccess})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<User>(context);
+    final user = Provider.of<User?>(context);
     print(user);
 
     // return either the Home or Authenticate widget

@@ -4,20 +4,20 @@ import '../size_config.dart';
 
 class FailDialog extends StatelessWidget {
   const FailDialog({
-    Key key,
-    @required this.context,
+    Key? key,
+    required this.context,
     this.title,
     this.message,
   }) : super(key: key);
 
   final BuildContext context;
-  final String title, message;
+  final String? title, message;
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(title),
-      content: Text(message),
+      title: Text(title ?? ""),
+      content: Text(message ?? ""),
       actions: [
         FlatButton(
             onPressed: () {

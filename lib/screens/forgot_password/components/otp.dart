@@ -8,16 +8,16 @@ class OTP extends StatelessWidget {
   final Color focusBorderColor;
   final TextEditingController controller;
   final Function(String) onChange;
-  final Function(String) onSaved;
+  final Function(String?) onSaved;
   final FocusNode focusNode;
   const OTP({
-    Key key,
+    Key? key,
     this.borderColor = Colors.grey,
     this.focusBorderColor = kPrimaryColor,
-    @required this.controller,
-    @required this.onChange,
-    @required this.onSaved,
-    @required this.focusNode,
+    required this.controller,
+    required this.onChange,
+    required this.onSaved,
+    required this.focusNode,
   }) : super(key: key);
 
   @override

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 class LoginSocial extends StatefulWidget {
   const LoginSocial({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

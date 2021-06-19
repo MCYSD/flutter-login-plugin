@@ -18,13 +18,14 @@ class FirebaseLogin {
     return LoginScreen();
   }
 
-  static Widget _homeScreen;
-  static Widget get homeScreen => _homeScreen;
-  static String uid;
-  static User userInfo;
+  static Widget? _homeScreen;
+  static Widget? get homeScreen => _homeScreen;
+  static String? uid;
+  static User? userInfo;
 
   static Widget firebaseLoginScreen(
-      {Widget homeScreen, void Function(User) onLoginSuccess}) {
+      {required Widget homeScreen,
+      required void Function(User) onLoginSuccess}) {
     _homeScreen = homeScreen;
     return FirebaseLoginScreen(
       homeScreen: homeScreen,

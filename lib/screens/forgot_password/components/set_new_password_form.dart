@@ -15,7 +15,7 @@ class SetNewPasswordForm extends StatefulWidget {
 class _SetNewPasswordFormState extends State<SetNewPasswordForm> {
   final _formKey = GlobalKey<FormState>();
   final List<String> _errors = [];
-  String _password, _confirmPassword;
+  String? _password, _confirmPassword;
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _confirmPasswordController = TextEditingController();
   bool _hidePassword = true;
@@ -40,7 +40,7 @@ class _SetNewPasswordFormState extends State<SetNewPasswordForm> {
               DefaultButton(
                 text: "Set new password",
                 onPress: () {
-                  if (_formKey.currentState.validate()) {
+                  if (_formKey.currentState!.validate()) {
                     if (_errors.isEmpty) {
                       Provider.of<ForgotPasswordModel>(context, listen: false)
                           .setFormDisplay(ForgotPasswordModel.UPDATE_SUCCESS);
@@ -102,12 +102,12 @@ class _SetNewPasswordFormState extends State<SetNewPasswordForm> {
           )),
       onSaved: (newValue) => _password = newValue,
       validator: (value) {
-        if (value.isEmpty && !_errors.contains(kPassNullError)) {
+        if ((value ?? "").isEmpty && !_errors.contains(kPassNullError)) {
           setState(() {
             _errors.add(kPassNullError);
           });
-        } else if (value.length < 3 &&
-            value.isNotEmpty &&
+        } else if ((value ?? "").length < 3 &&
+            (value ?? "").isNotEmpty &&
             !_errors.contains(kShortPassError)) {
           setState(() {
             _errors.add(kShortPassError);

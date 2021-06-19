@@ -16,7 +16,7 @@ class SignUpForm extends StatefulWidget {
 
 class _SignUpFormState extends State<SignUpForm> {
   UserRepository _userRepository = UserRepository();
-  String email, password, confirmPassword;
+  String? email, password, confirmPassword;
   final _formKey = GlobalKey<FormState>();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
@@ -56,15 +56,15 @@ class _SignUpFormState extends State<SignUpForm> {
                   DefaultButton(
                     text: "Create account",
                     onPress: () async {
-                      if (_formKey.currentState.validate()) {
+                      if (_formKey.currentState!.validate()) {
                         if (errors.isEmpty) {
-                          _formKey.currentState.save();
+                          _formKey.currentState!.save();
                           setState(() {
                             isLoading = true;
                           });
-                          String error = await _userRepository.createAccount(
-                              email, password);
-                          if (error.isEmpty)
+                          String? error = await _userRepository.createAccount(
+                              email ?? "", password ?? "");
+                          if ((error ?? "").isEmpty)
                             Navigator.pop(context);
                           else {
                             setState(() {
@@ -113,11 +113,11 @@ class _SignUpFormState extends State<SignUpForm> {
       ),
       onSaved: (newValue) => email = newValue,
       validator: (value) {
-        if (value.isEmpty && !errors.contains(kEmailNullError))
+        if ((value ?? "").isEmpty && !errors.contains(kEmailNullError))
           setState(() {
             errors.add(kEmailNullError);
           });
-        else if (!emailValidatorRegExp.hasMatch(value) &&
+        else if (!emailValidatorRegExp.hasMatch((value ?? "")) &&
             !errors.contains(kInvalidEmailError) &&
             !errors.contains(kEmailNullError))
           setState(() {
@@ -180,11 +180,11 @@ class _SignUpFormState extends State<SignUpForm> {
       ),
       onSaved: (newValue) => password = newValue,
       validator: (value) {
-        if (value.isEmpty && !errors.contains(kPassNullError))
+        if ((value ?? "").isEmpty && !errors.contains(kPassNullError))
           setState(() {
             errors.add(kPassNullError);
           });
-        else if (value.length < 6 &&
+        else if ((value ?? "").length < 6 &&
             !errors.contains(kShortPassError) &&
             !errors.contains(kPassNullError))
           setState(() {

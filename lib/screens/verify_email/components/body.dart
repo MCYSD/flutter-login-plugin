@@ -2,14 +2,11 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_login/repositories/user_repository.dart';
-import 'package:firebase_login/screens/components/default_button.dart';
 import 'package:firebase_login/screens/verify_email/components/verify_email_body.dart';
 import 'package:firebase_login/screens/verify_email/components/verify_email_header.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 
 import '../../common_utils.dart';
-import '../../size_config.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -18,8 +15,8 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   UserRepository _userRepository = UserRepository();
-  User user;
-  Timer timer;
+  User? user;
+  Timer? timer;
 
   @override
   void initState() {
@@ -33,7 +30,7 @@ class _BodyState extends State<Body> {
 
   @override
   void dispose() {
-    timer.cancel();
+    timer?.cancel();
     super.dispose();
   }
 
@@ -42,7 +39,7 @@ class _BodyState extends State<Body> {
     return Column(
       children: [
         VerifyEmailHeader(
-          email: user.email,
+          email: user?.email ?? "",
         ),
         marginVerticalLong,
         VerifyEmailBody(),
@@ -52,10 +49,10 @@ class _BodyState extends State<Body> {
 
   Future<void> checkVerifyStatus() async {
     user = _userRepository.getUserInfo();
-    await user.reload();
+    await user?.reload();
 
-    if (user.emailVerified) {
-      timer.cancel();
+    if (user?.emailVerified ?? true) {
+      timer?.cancel();
     }
   }
 }

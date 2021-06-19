@@ -4,9 +4,9 @@ import '../constants.dart';
 import '../size_config.dart';
 
 class DefaultButton extends StatelessWidget {
-  final String text;
-  final Function onPress;
-  const DefaultButton({Key key, this.text, this.onPress}) : super(key: key);
+  final String? text;
+  final VoidCallback? onPress;
+  const DefaultButton({Key? key, this.text, this.onPress}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class DefaultButton extends StatelessWidget {
           color: kPrimaryColor,
           onPressed: onPress,
           child: Text(
-            this.text,
+            this.text ?? "",
             style: TextStyle(
                 fontSize: getProportionateScreenWidth(18), color: Colors.white),
           )),

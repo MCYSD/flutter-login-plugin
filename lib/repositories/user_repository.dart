@@ -22,21 +22,21 @@ class UserRepository {
   final storage = FirebaseStorage.instance;
 
   UserRepository(
-      {FirebaseAuth firebaseAuth,
-      GoogleSignIn googleSignIn,
-      FirebaseFirestore firebaseFirestore,
-      FacebookAuth facebookAuth})
+      {FirebaseAuth? firebaseAuth,
+      GoogleSignIn? googleSignIn,
+      FirebaseFirestore? firebaseFirestore,
+      FacebookAuth? facebookAuth})
       : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance,
         _googleSignIn = googleSignIn ?? GoogleSignIn(),
         _firebaseFirestore = firebaseFirestore ?? FirebaseFirestore.instance,
         _facebookAuth = facebookAuth ?? FacebookAuth.instance;
 
-  Stream<User> get user => _firebaseAuth.userChanges();
+  Stream<User?> get user => _firebaseAuth.userChanges();
 
   //sign up with email and password
   //return value is a error string
   //if sign up success, the OnUserStateChange auto trigger
-  Future<String> createAccount(String email, String password) async {
+  Future<String?> createAccount(String email, String password) async {
     try {
       await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
@@ -48,7 +48,7 @@ class UserRepository {
 
   Future<dynamic> verifyEmail() async {
     try {
-      await _firebaseAuth.currentUser.sendEmailVerification();
+      await _firebaseAuth.currentUser!.sendEmailVerification();
     } catch (e) {}
 
     return "";
@@ -57,7 +57,7 @@ class UserRepository {
   //sign in with email and password
   //return value is a error string
   //if login success, the OnUserStateChange auto trigger
-  Future<String> signInWithEmailAndPass(String email, String password) async {
+  Future<String?> signInWithEmailAndPass(String email, String password) async {
     try {
       await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
@@ -68,7 +68,7 @@ class UserRepository {
     return "";
   }
 
-  Future<void> signOut() async {
+  Future<List<void>> signOut() async {
     return Future.wait([
       _firebaseAuth.signOut(),
       _googleSignIn.signOut(),
@@ -77,10 +77,10 @@ class UserRepository {
   }
 
   Future<void> reloadUser() async {
-    return _firebaseAuth.currentUser.reload();
+    return _firebaseAuth.currentUser?.reload();
   }
 
-  Stream<User> obserUserChange() {
+  Stream<User?> obserUserChange() {
     return _firebaseAuth.userChanges();
   }
 
@@ -109,7 +109,7 @@ class UserRepository {
       print("****KakaoLoginFail cause ${e.message}");
       return e.toString();
     } catch (e) {
-      print("****KakaoLoginFail cause ${e.message}");
+      print("****KakaoLoginFail cause ${e.toString()}");
       return e.toString();
     }
   }
@@ -123,19 +123,19 @@ class UserRepository {
   ///Because Google and Facebook use difference AuthProvider so we need to link credential
   ///
   ///If not link credential, user only sign in with either Facebook or Google
-  Future<dynamic> signInWithGoogle({AuthCredential credential}) async {
+  Future<dynamic> signInWithGoogle({AuthCredential? credential}) async {
     try {
-      final GoogleSignInAccount googleSignInAccount =
+      final GoogleSignInAccount? googleSignInAccount =
           await _googleSignIn.signIn();
-      final GoogleSignInAuthentication googleSignInAuthentication =
-          await googleSignInAccount.authentication;
+      final GoogleSignInAuthentication? googleSignInAuthentication =
+          await googleSignInAccount?.authentication;
       final AuthCredential authCredential = GoogleAuthProvider.credential(
-          idToken: googleSignInAuthentication.idToken,
-          accessToken: googleSignInAuthentication.accessToken);
+          idToken: googleSignInAuthentication?.idToken,
+          accessToken: googleSignInAuthentication?.accessToken);
 
       //get list login method has been register
       List<String> listLoginMethod = await _firebaseAuth
-          .fetchSignInMethodsForEmail(googleSignInAccount.email);
+          .fetchSignInMethodsForEmail(googleSignInAccount!.email);
 
       //if user already sign in with facebook and not sign in with google
       //require user sign in with facebook to link credential
@@ -148,7 +148,7 @@ class UserRepository {
         } else {
           await _firebaseAuth
               .signInWithCredential(authCredential)
-              .then((value) => value.user.linkWithCredential(credential));
+              .then((value) => value.user!.linkWithCredential(credential));
         }
       }
       return "";
@@ -166,14 +166,14 @@ class UserRepository {
   ///Because Google and Facebook use difference AuthProvider so we need to link credential
   ///
   ///If not link credential, user only sign in with either Facebook or Google
-  Future<dynamic> signInWithFacebook({AuthCredential credential}) async {
+  Future<dynamic> signInWithFacebook({AuthCredential? credential}) async {
     try {
       // by default the login method has the next permissions ['email','public_profile']
       LoginResult loginResult = await _facebookAuth.login();
       if (loginResult.status == LoginStatus.success) {
         // sign in with facebook credential
-        FacebookAuthCredential fbCredential =
-            FacebookAuthProvider.credential(loginResult.accessToken.token);
+        var fbCredential =
+            FacebookAuthProvider.credential(loginResult.accessToken!.token);
 
         //credential null mean login by facebook credential
         //else login by facebook first, after that link to credential
@@ -182,7 +182,7 @@ class UserRepository {
         } else {
           await _firebaseAuth
               .signInWithCredential(fbCredential)
-              .then((value) => value.user.linkWithCredential(credential));
+              .then((value) => value.user!.linkWithCredential(credential));
         }
 
         return "";
@@ -244,11 +244,11 @@ class UserRepository {
     }
   }
 
-  User getUserInfo() {
+  User? getUserInfo() {
     return _firebaseAuth.currentUser;
   }
 
-  Future<String> sendPasswordResetEmail(String email) async {
+  Future<String?> sendPasswordResetEmail(String email) async {
     try {
       await _firebaseAuth.sendPasswordResetEmail(email: email);
     } on FirebaseAuthException catch (e) {

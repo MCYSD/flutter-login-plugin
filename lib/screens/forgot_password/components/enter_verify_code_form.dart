@@ -30,7 +30,7 @@ class _EnterVerifyCodeFormState extends State<EnterVerifyCodeForm> {
   final TextEditingController _otp6 = TextEditingController();
   int resentRemainTime = 60;
 
-  FocusNode _focusNode1,
+  late FocusNode _focusNode1,
       _focusNode2,
       _focusNode3,
       _focusNode4,

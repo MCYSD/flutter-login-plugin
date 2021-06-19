@@ -8,12 +8,12 @@ class FirebaseLoginScreen extends StatelessWidget {
   final Widget homeScreen;
   final void Function(User) onLoginSuccess;
   const FirebaseLoginScreen(
-      {Key key, @required this.homeScreen, @required this.onLoginSuccess})
+      {Key? key, required this.homeScreen, required this.onLoginSuccess})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<User>.value(
+    return StreamProvider<User?>.value(
       value: UserRepository().user,
       initialData: null,
       child: WrapperScreen(
