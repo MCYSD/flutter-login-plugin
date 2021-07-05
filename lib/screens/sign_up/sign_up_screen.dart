@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../common_utils.dart';
@@ -16,12 +17,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       appBar: buildAppBar("Sign up"),
       body: LayoutBuilder(
         builder: (context, constraints) {
-          if (constraints.maxWidth > phoneMaxWidth) {
-            return Row(
-              children: [Spacer(), Body(), Spacer()],
-            );
-          } else
-            return Body();
+          return kIsWeb ? Row(children: [Spacer(), Body(), Spacer()]) : Body();
         },
       ),
     );

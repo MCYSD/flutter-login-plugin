@@ -1,4 +1,5 @@
 import 'package:firebase_login/screens/common_utils.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
@@ -18,13 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
       appBar: buildAppBar("Sign In"),
       body: LayoutBuilder(
         builder: (context, constraints) {
-          print("****ScreenWidth ${constraints.maxWidth}");
-          if (constraints.maxWidth > phoneMaxWidth) {
-            return Row(
-              children: [Spacer(), Body(), Spacer()],
-            );
-          } else
-            return Body();
+          return kIsWeb ? Row(children: [Spacer(), Body(), Spacer()]) : Body();
         },
       ),
     );
