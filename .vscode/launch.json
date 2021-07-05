@@ -7,13 +7,15 @@
         {
             "name": "firebase_login",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "args": ["-d", "chrome","--web-port", "5000"],
         },
         {
             "name": "example",
             "cwd": "example",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "args": ["-d", "chrome","--web-port", "5000"],
         }
     ]
 }

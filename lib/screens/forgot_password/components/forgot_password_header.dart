@@ -6,6 +6,9 @@ class ForgotPasswordHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        SizedBox(
+          height: 20,
+        ),
         Text(
           "Tell me you email",
           style: TextStyle(

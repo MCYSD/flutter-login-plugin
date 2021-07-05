@@ -32,8 +32,7 @@ class _SignUpFormState extends State<SignUpForm> {
         Form(
             key: _formKey,
             child: Container(
-              padding: EdgeInsets.symmetric(
-                  horizontal: getProportionateScreenWidth(24)),
+              padding: EdgeInsets.symmetric(horizontal: 24),
               child: Column(
                 children: [
                   buildEmailTextField(),
@@ -103,7 +102,7 @@ class _SignUpFormState extends State<SignUpForm> {
       decoration: InputDecoration(
         enabledBorder: outlineInputBorder,
         focusedBorder: outlineInputBorder,
-        contentPadding: EdgeInsets.all(getProportionateScreenWidth(20)),
+        contentPadding: EdgeInsets.all(20),
         hintText: "Enter your email",
         labelText: "Email",
         floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -149,15 +148,15 @@ class _SignUpFormState extends State<SignUpForm> {
       decoration: InputDecoration(
         enabledBorder: outlineInputBorder,
         focusedBorder: outlineInputBorder,
-        contentPadding: EdgeInsets.all(getProportionateScreenWidth(20)),
+        contentPadding: EdgeInsets.all(20),
         hintText: "Enter your password",
         labelText: "Password",
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: Padding(
-          padding: EdgeInsets.only(right: getProportionateScreenWidth(10)),
+          padding: EdgeInsets.only(right: 10),
           child: SizedBox(
-            width: getProportionateScreenWidth(50),
-            height: getProportionateScreenWidth(40),
+            width: 50,
+            height: 40,
             child: FlatButton(
               onPressed: () {
                 setState(() {
@@ -169,11 +168,10 @@ class _SignUpFormState extends State<SignUpForm> {
                     ? FontAwesomeIcons.eye
                     : FontAwesomeIcons.eyeSlash,
                 color: Colors.grey,
-                size: getProportionateScreenWidth(15),
+                size: 15,
               ),
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(
-                      Radius.circular(getProportionateScreenWidth(25)))),
+                  borderRadius: BorderRadius.all(Radius.circular(25))),
             ),
           ),
         ),
@@ -219,15 +217,15 @@ class _SignUpFormState extends State<SignUpForm> {
       decoration: InputDecoration(
         enabledBorder: outlineInputBorder,
         focusedBorder: outlineInputBorder,
-        contentPadding: EdgeInsets.all(getProportionateScreenWidth(20)),
+        contentPadding: EdgeInsets.all(20),
         hintText: "Re-Enter your password",
         labelText: "Confirm Password",
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: Padding(
-          padding: EdgeInsets.only(right: getProportionateScreenWidth(10)),
+          padding: EdgeInsets.only(right: 10),
           child: SizedBox(
-            width: getProportionateScreenWidth(50),
-            height: getProportionateScreenWidth(40),
+            width: 50,
+            height: 40,
             child: FlatButton(
               onPressed: () {
                 setState(() {
@@ -239,11 +237,10 @@ class _SignUpFormState extends State<SignUpForm> {
                     ? FontAwesomeIcons.eye
                     : FontAwesomeIcons.eyeSlash,
                 color: Colors.grey,
-                size: getProportionateScreenWidth(15),
+                size: 15,
               ),
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(
-                      Radius.circular(getProportionateScreenWidth(25)))),
+                  borderRadius: BorderRadius.all(Radius.circular(25))),
             ),
           ),
         ),

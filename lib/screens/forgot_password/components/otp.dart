@@ -23,8 +23,8 @@ class OTP extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: getProportionateScreenWidth(40),
-      height: getProportionateScreenWidth(40),
+      width: 40,
+      height: 40,
       //alignment: Alignment.center,
       child: TextFormField(
           controller: controller,
@@ -34,8 +34,7 @@ class OTP extends StatelessWidget {
           focusNode: focusNode,
           decoration: InputDecoration(
             counterText: "",
-            contentPadding:
-                EdgeInsets.only(bottom: getProportionateScreenWidth(20)),
+            contentPadding: EdgeInsets.only(bottom: 20),
             isDense: true,
             fillColor: Colors.yellow,
             enabledBorder: OutlineInputBorder(

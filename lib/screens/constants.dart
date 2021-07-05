@@ -24,3 +24,4 @@ const String kNamelNullError = "Please Enter your name";
 const String kPhoneNumberNullError = "Please Enter your phone number";
 const String kInvalidPhoneNumberError = "Please Enter Valid Phone Number";
 const String kAddressNullError = "Please Enter your address";
+const double phoneMaxWidth = 500.0;

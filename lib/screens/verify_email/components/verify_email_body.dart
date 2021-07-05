@@ -11,16 +11,13 @@ class VerifyEmailBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:
-          EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+      padding: EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         children: [
           marginVerticalLong,
           SizedBox(
             child: Lottie.asset("assets/animation/send_email.json",
-                package: "firebase_login",
-                width: getProportionateScreenWidth(200),
-                height: getProportionateScreenHeight(200)),
+                package: "firebase_login", width: 200, height: 200),
           ),
           marginVerticalLong,
           DefaultButton(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../common_utils.dart';
+import '../constants.dart';
 import 'components/body.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -13,7 +14,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar("Sign up"),
-      body: Body(),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          if (constraints.maxWidth > phoneMaxWidth) {
+            return Row(
+              children: [Spacer(), Body(), Spacer()],
+            );
+          } else
+            return Body();
+        },
+      ),
     );
   }
 }

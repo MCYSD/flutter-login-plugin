@@ -7,7 +7,7 @@ AppBar buildAppBar(String title) {
     elevation: 0,
     title: Text(
       title,
-      style: TextStyle(color: Colors.black54),
+      style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w700),
     ),
     iconTheme: IconThemeData(color: Colors.black),
     centerTitle: true,
@@ -29,21 +29,21 @@ var loadingForm = Container(
 );
 
 var marginVerticalSmall = SizedBox(
-  height: getProportionateScreenHeight(10),
+  height: 10,
 );
 
 var marginVerticalNormal = SizedBox(
-  height: getProportionateScreenHeight(20),
+  height: 20,
 );
 var marginVerticalLong = SizedBox(
-  height: getProportionateScreenHeight(40),
+  height: 40,
 );
 var marginHorizontalSmall = SizedBox(
-  width: getProportionateScreenWidth(10),
+  width: 10,
 );
 var marginHorizontalNormal = SizedBox(
-  width: getProportionateScreenWidth(20),
+  width: 20,
 );
 var marginHorizontalLong = SizedBox(
-  width: getProportionateScreenWidth(40),
+  width: 40,
 );

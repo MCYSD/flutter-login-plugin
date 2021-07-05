@@ -25,7 +25,7 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
       key: _formKey,
       child: Padding(
         padding: EdgeInsets.symmetric(
-          horizontal: getProportionateScreenWidth(20),
+          horizontal: 20,
         ),
         child: Column(
           children: [
@@ -80,12 +80,12 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
     return TextFormField(
       autofocus: true,
       keyboardType: TextInputType.emailAddress,
-      style: TextStyle(fontSize: getProportionateScreenWidth(18)),
+      style: TextStyle(fontSize: 18),
       decoration: InputDecoration(
         floatingLabelBehavior: FloatingLabelBehavior.always,
         contentPadding: EdgeInsets.symmetric(
-          vertical: getProportionateScreenHeight(20),
-          horizontal: getProportionateScreenWidth(20),
+          vertical: 20,
+          horizontal: 20,
         ),
         enabledBorder: outlineInputBorder,
         focusedBorder: outlineInputBorder,

@@ -26,8 +26,7 @@ class _SetNewPasswordFormState extends State<SetNewPasswordForm> {
     return Form(
         key: _formKey,
         child: Padding(
-          padding:
-              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+          padding: EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: [
               marginVerticalLong,
@@ -72,15 +71,15 @@ class _SetNewPasswordFormState extends State<SetNewPasswordForm> {
       decoration: InputDecoration(
           enabledBorder: outlineInputBorder,
           focusedBorder: outlineInputBorder,
-          contentPadding: EdgeInsets.all(getProportionateScreenWidth(20)),
+          contentPadding: EdgeInsets.all(20),
           labelText: "New password",
           hintText: "Enter new password",
           floatingLabelBehavior: FloatingLabelBehavior.always,
           suffixIcon: Padding(
-            padding: EdgeInsets.only(right: getProportionateScreenWidth(10)),
+            padding: EdgeInsets.only(right: 10),
             child: SizedBox(
-              width: getProportionateScreenWidth(50),
-              height: getProportionateScreenWidth(40),
+              width: 50,
+              height: 40,
               child: FlatButton(
                 onPressed: () {
                   setState(() {
@@ -92,11 +91,10 @@ class _SetNewPasswordFormState extends State<SetNewPasswordForm> {
                       ? FontAwesomeIcons.eye
                       : FontAwesomeIcons.eyeSlash,
                   color: Colors.grey,
-                  size: getProportionateScreenWidth(15),
+                  size: 15,
                 ),
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(
-                        Radius.circular(getProportionateScreenWidth(25)))),
+                    borderRadius: BorderRadius.all(Radius.circular(25))),
               ),
             ),
           )),
@@ -137,15 +135,15 @@ class _SetNewPasswordFormState extends State<SetNewPasswordForm> {
       decoration: InputDecoration(
           enabledBorder: outlineInputBorder,
           focusedBorder: outlineInputBorder,
-          contentPadding: EdgeInsets.all(getProportionateScreenWidth(20)),
+          contentPadding: EdgeInsets.all(20),
           labelText: "Confirm password",
           hintText: "Enter confirm password",
           floatingLabelBehavior: FloatingLabelBehavior.always,
           suffixIcon: Padding(
-            padding: EdgeInsets.only(right: getProportionateScreenWidth(10)),
+            padding: EdgeInsets.only(right: 10),
             child: SizedBox(
-              width: getProportionateScreenWidth(50),
-              height: getProportionateScreenWidth(40),
+              width: 50,
+              height: 40,
               child: FlatButton(
                 onPressed: () {
                   setState(() {
@@ -157,11 +155,10 @@ class _SetNewPasswordFormState extends State<SetNewPasswordForm> {
                       ? FontAwesomeIcons.eye
                       : FontAwesomeIcons.eyeSlash,
                   color: Colors.grey,
-                  size: getProportionateScreenWidth(15),
+                  size: 15,
                 ),
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(
-                        Radius.circular(getProportionateScreenWidth(25)))),
+                    borderRadius: BorderRadius.all(Radius.circular(25))),
               ),
             ),
           )),

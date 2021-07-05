@@ -4,12 +4,12 @@ import 'package:firebase_login/firebase_login.dart';
 import 'package:firebase_login_example/home_screen.dart';
 import 'package:flutter/material.dart';
 
-class SplashSreen extends StatefulWidget {
+class SplashScreen extends StatefulWidget {
   @override
-  _SplashSreenState createState() => _SplashSreenState();
+  _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashSreenState extends State<SplashSreen> {
+class _SplashScreenState extends State<SplashScreen> {
   int _count = 0;
   @override
   void initState() {

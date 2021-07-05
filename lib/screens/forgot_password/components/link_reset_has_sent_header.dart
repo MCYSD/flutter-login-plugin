@@ -11,6 +11,9 @@ class LinkResetHasSentHeader extends StatelessWidget {
       builder: (context, forgotPasswordModel, child) {
         return Column(
           children: [
+            SizedBox(
+              height: 20,
+            ),
             Text(
               "Reset link has sent",
               style: TextStyle(

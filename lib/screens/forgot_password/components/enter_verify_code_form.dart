@@ -55,8 +55,7 @@ class _EnterVerifyCodeFormState extends State<EnterVerifyCodeForm> {
     return Form(
         key: _formKey,
         child: Padding(
-          padding:
-              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+          padding: EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: [
               marginVerticalNormal,
@@ -81,7 +80,7 @@ class _EnterVerifyCodeFormState extends State<EnterVerifyCodeForm> {
               Text("Didn't get verify code?"),
               marginVerticalSmall,
               SizedBox(
-                height: getProportionateScreenHeight(60),
+                height: 60,
                 child: FlatButton(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),

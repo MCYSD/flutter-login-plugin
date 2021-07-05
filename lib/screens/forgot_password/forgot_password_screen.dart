@@ -3,6 +3,7 @@ import 'package:firebase_login/screens/common_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../constants.dart';
 import 'components/body.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
@@ -17,7 +18,16 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       create: (context) => ForgotPasswordModel(),
       child: Scaffold(
         appBar: buildAppBar("Forgot password"),
-        body: Body(),
+        body: LayoutBuilder(
+          builder: (context, constraints) {
+            if (constraints.maxWidth > phoneMaxWidth) {
+              return Row(
+                children: [Spacer(), Body(), Spacer()],
+              );
+            } else
+              return Body();
+          },
+        ),
       ),
     );
   }

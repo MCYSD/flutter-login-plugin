@@ -11,6 +11,9 @@ class EnterVefiryCodeHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        SizedBox(
+          height: 20,
+        ),
         Text(
           "Check your messeage",
           style: TextStyle(

@@ -7,13 +7,8 @@ class LoginHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(
-          "Welcome Back",
-          style: TextStyle(
-              color: Colors.black87, fontSize: 30, fontWeight: FontWeight.w700),
-        ),
         SizedBox(
-          height: getProportionateScreenHeight(20),
+          height: 20,
         ),
         Text(
           "Sign in with your email and password\nor continue with social media",

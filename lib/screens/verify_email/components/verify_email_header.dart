@@ -28,7 +28,7 @@ class VerifyEmailHeader extends StatelessWidget {
             ],
           ),
           textAlign: TextAlign.center,
-          style: TextStyle(fontSize: getProportionateScreenWidth(18)),
+          style: TextStyle(fontSize: 18),
         ),
       ],
     );

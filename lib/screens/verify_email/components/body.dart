@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_login/repositories/user_repository.dart';
+import 'package:firebase_login/screens/constants.dart';
 import 'package:firebase_login/screens/verify_email/components/verify_email_body.dart';
 import 'package:firebase_login/screens/verify_email/components/verify_email_header.dart';
 import 'package:flutter/material.dart';
@@ -36,14 +37,17 @@ class _BodyState extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        VerifyEmailHeader(
-          email: user?.email ?? "",
-        ),
-        marginVerticalLong,
-        VerifyEmailBody(),
-      ],
+    return ConstrainedBox(
+      constraints: BoxConstraints(maxWidth: phoneMaxWidth),
+      child: Column(
+        children: [
+          VerifyEmailHeader(
+            email: user?.email ?? "",
+          ),
+          marginVerticalLong,
+          VerifyEmailBody(),
+        ],
+      ),
     );
   }
 

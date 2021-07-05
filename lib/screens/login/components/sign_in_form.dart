@@ -32,8 +32,7 @@ class _SignInFormState extends State<SignInForm> {
         Form(
             key: _formKey,
             child: Container(
-              padding: EdgeInsets.symmetric(
-                  horizontal: getProportionateScreenWidth(24)),
+              padding: EdgeInsets.symmetric(horizontal: 24),
               child: Column(
                 children: [
                   buildEmailTextField(outlineInputBorder),
@@ -140,18 +139,17 @@ class _SignInFormState extends State<SignInForm> {
       obscureText: _hidePassword,
       keyboardType: TextInputType.visiblePassword,
       decoration: InputDecoration(
-        contentPadding:
-            EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+        contentPadding: EdgeInsets.symmetric(horizontal: 20),
         enabledBorder: outlineInputBorder,
         focusedBorder: outlineInputBorder,
         labelText: "Password",
         hintText: "Enter your password",
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: Padding(
-          padding: EdgeInsets.only(right: getProportionateScreenWidth(10)),
+          padding: EdgeInsets.only(right: 10),
           child: SizedBox(
-            width: getProportionateScreenWidth(50),
-            height: getProportionateScreenWidth(55),
+            width: 50,
+            height: 55,
             child: FlatButton(
               onPressed: () {
                 setState(() {
@@ -163,11 +161,10 @@ class _SignInFormState extends State<SignInForm> {
                     ? FontAwesomeIcons.eye
                     : FontAwesomeIcons.eyeSlash,
                 color: Colors.grey,
-                size: getProportionateScreenWidth(15),
+                size: 15,
               ),
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(
-                      Radius.circular(getProportionateScreenWidth(25)))),
+                  borderRadius: BorderRadius.all(Radius.circular(25))),
             ),
           ),
         ),
@@ -205,8 +202,7 @@ class _SignInFormState extends State<SignInForm> {
     return TextFormField(
       keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
-        contentPadding:
-            EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+        contentPadding: EdgeInsets.symmetric(horizontal: 20),
         enabledBorder: outlineInputBorder,
         focusedBorder: outlineInputBorder,
         labelText: "Email",

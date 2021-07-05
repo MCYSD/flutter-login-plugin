@@ -1,5 +1,6 @@
 import 'package:firebase_login/provider/ForgotPasswordModel.dart';
 import 'package:firebase_login/screens/common_utils.dart';
+import 'package:firebase_login/screens/constants.dart';
 import 'package:firebase_login/screens/forgot_password/components/enter_verify_code_form.dart';
 import 'package:firebase_login/screens/forgot_password/components/enter_verify_code_header.dart';
 import 'package:firebase_login/screens/forgot_password/components/forgot_password_form.dart';
@@ -21,11 +22,14 @@ class Body extends StatelessWidget {
         Widget header = buildHeader(forgotPasswordModel);
         Widget body = buildBody(forgotPasswordModel);
 
-        return Container(
-          width: double.infinity,
-          child: SingleChildScrollView(
-            child: Column(
-              children: [header, marginVerticalLong, body],
+        return ConstrainedBox(
+          constraints: BoxConstraints(maxWidth: phoneMaxWidth),
+          child: Container(
+            width: double.infinity,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [header, marginVerticalLong, body],
+              ),
             ),
           ),
         );

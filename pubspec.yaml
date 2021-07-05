@@ -54,6 +54,7 @@ flutter:
         pluginClass: FirebaseLoginPlugin
       ios:
         pluginClass: FirebaseLoginPlugin
+        iosBundleIdentifier: mcysd.flutter.plugin.firebase_login
 
   # To add assets to your plugin package, add an assets section, like this:
   assets:

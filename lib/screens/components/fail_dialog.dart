@@ -25,7 +25,7 @@ class FailDialog extends StatelessWidget {
             },
             child: Text(
               "Try again",
-              style: TextStyle(fontSize: getProportionateScreenWidth(18)),
+              style: TextStyle(fontSize: 18),
             ))
       ],
     );

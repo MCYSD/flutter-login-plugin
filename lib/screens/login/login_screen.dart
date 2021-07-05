@@ -1,6 +1,7 @@
 import 'package:firebase_login/screens/common_utils.dart';
 import 'package:flutter/material.dart';
 
+import '../constants.dart';
 import '../size_config.dart';
 import 'components/body.dart';
 
@@ -14,8 +15,18 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     SizeConfig.init(context);
     return Scaffold(
-      appBar: buildAppBar("Login"),
-      body: Body(),
+      appBar: buildAppBar("Sign In"),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          print("****ScreenWidth ${constraints.maxWidth}");
+          if (constraints.maxWidth > phoneMaxWidth) {
+            return Row(
+              children: [Spacer(), Body(), Spacer()],
+            );
+          } else
+            return Body();
+        },
+      ),
     );
   }
 }
