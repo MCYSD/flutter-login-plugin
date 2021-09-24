@@ -90,14 +90,11 @@ class UserRepository {
 
   Future<dynamic> signInWithKakao() async {
     try {
-      final installed = await isKakaoTalkInstalled();
-      final authCode = installed
-          ? await AuthCodeClient.instance.requestWithTalk()
-          : await AuthCodeClient.instance.request();
+      String authCode = await AuthCodeClient.instance.request(); // via browser
+      // String authCode = await AuthCodeClient.instance.requestWithTalk() // or with KakaoTalk
       AccessTokenResponse token =
           await AuthApi.instance.issueAccessToken(authCode);
-      // Store access token in AccessTokenStore for future API requests.
-      AccessTokenStore.instance.toStore(token);
+      TokenManager.instance.setToken(token);
 
       print("Kakao token: ${token.accessToken}");
 
