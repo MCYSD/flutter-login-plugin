@@ -5,11 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'dart:async';
 
-import 'package:kakao_flutter_sdk/all.dart';
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  KakaoContext.clientId = "5ec6bccfb97bbcc2672bfd22efe0b0af";
   if (kIsWeb) {
     // initialiaze the facebook javascript SDK
     FacebookAuth.i.webInitialize(

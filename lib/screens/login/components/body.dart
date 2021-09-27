@@ -1,3 +1,4 @@
+import 'package:firebase_login/firebase_login.dart';
 import 'package:firebase_login/screens/constants.dart';
 import 'package:firebase_login/screens/login/components/login_header.dart';
 import 'package:firebase_login/screens/login/components/sign_in_form.dart';
@@ -30,7 +31,9 @@ class _BodyState extends State<Body> {
               SizedBox(
                 height: 20,
               ),
-              LoginSocial(),
+              LoginSocial(
+                loginSupports: FirebaseLogin.loginSupports!,
+              ),
             ],
           ),
         ),

@@ -4,68 +4,40 @@ import 'package:firebase_login/screens/components/circle_icon_button.dart';
 import 'package:firebase_login/screens/components/fail_dialog.dart';
 import 'package:flutter/material.dart';
 
-class LoginSocial extends StatefulWidget {
-  const LoginSocial({
-    Key? key,
-  }) : super(key: key);
+class LoginSocial extends StatelessWidget {
+  LoginSocial({Key? key, required this.loginSupports}) : super(key: key);
 
-  @override
-  _LoginSocialState createState() => _LoginSocialState();
-}
-
-class _LoginSocialState extends State<LoginSocial> {
   UserRepository _userRepository = UserRepository();
-
+  List<LoginType> loginSupports;
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        CircleIconButton(
-          backgroundColor: Colors.yellow,
-          icon: "assets/icons/kakao-icon.svg",
-          onPress: () async {
-            await handleSignInWithKakao(context);
-          },
-        ),
-        CircleIconButton(
-          icon: "assets/icons/google-icon.svg",
-          onPress: () async {
-            await handleSignInWithGoogle(context);
-          },
-        ),
-        CircleIconButton(
-          icon: "assets/icons/facebook-2.svg",
-          onPress: () async {
-            await handleSignInWithFacebook(context);
-          },
-        ),
-        CircleIconButton(
-          icon: "assets/icons/Apple.svg",
-          backgroundColor: Colors.red,
-          onPress: () async {
-            await handleSignInWithApple(context);
-          },
-        ),
+        if (loginSupports.contains(LoginType.Google))
+          CircleIconButton(
+            icon: "assets/icons/google-icon.svg",
+            onPress: () async {
+              await handleSignInWithGoogle(context);
+            },
+          ),
+        if (loginSupports.contains(LoginType.Facebook))
+          CircleIconButton(
+            icon: "assets/icons/facebook-2.svg",
+            onPress: () async {
+              await handleSignInWithFacebook(context);
+            },
+          ),
+        if (loginSupports.contains(LoginType.Apple))
+          CircleIconButton(
+            icon: "assets/icons/Apple.svg",
+            backgroundColor: Colors.red,
+            onPress: () async {
+              await handleSignInWithApple(context);
+            },
+          ),
       ],
     );
-  }
-
-  Future handleSignInWithKakao(BuildContext context) async {
-    dynamic error = await _userRepository.signInWithKakao();
-    if (error is String) {
-      if (error.isNotEmpty)
-        showDialog(
-          context: context,
-          builder: (context) => FailDialog(
-            context: context,
-            title: "Login Fail",
-            message: error,
-          ),
-        );
-    } else if (error is AuthCredential) {
-      showDialogRequireLoginByGooogle(error);
-    }
   }
 
   ///Return an [AuthCredential] or [Error]
@@ -87,7 +59,7 @@ class _LoginSocialState extends State<LoginSocial> {
           barrierDismissible: true,
         );
     } else if (error is AuthCredential) {
-      showDialogRequireLoginByFacebook(error);
+      showDialogRequireLoginByFacebook(context, error);
     }
   }
 
@@ -125,14 +97,15 @@ class _LoginSocialState extends State<LoginSocial> {
           barrierDismissible: true,
         );
     } else if (result is AuthCredential) {
-      showDialogRequireLoginByGooogle(result);
+      showDialogRequireLoginByGooogle(context, result);
     }
   }
 
   ///Use for show dialog required login by Google
   ///
   ///[credential] is a login credential get from login Facebook or Apple
-  void showDialogRequireLoginByGooogle(AuthCredential credential) {
+  void showDialogRequireLoginByGooogle(
+      BuildContext context, AuthCredential credential) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -156,7 +129,8 @@ class _LoginSocialState extends State<LoginSocial> {
   ///Use for show dialog required login by Facebook
   ///
   //////[credential] is a login credential get from login Google or Apple
-  void showDialogRequireLoginByFacebook(AuthCredential credential) {
+  void showDialogRequireLoginByFacebook(
+      BuildContext context, AuthCredential credential) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -177,3 +151,5 @@ class _LoginSocialState extends State<LoginSocial> {
     );
   }
 }
+
+enum LoginType { Google, Facebook, Apple }

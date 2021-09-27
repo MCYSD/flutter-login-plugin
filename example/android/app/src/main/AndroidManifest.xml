@@ -77,18 +77,5 @@
                <data android:scheme="@string/fb_login_protocol_scheme" />
            </intent-filter>
        </activity>
-
-        <!-- setup kakao login-->
-       <activity android:name="com.kakao.sdk.flutter.AuthCodeCustomTabsActivity">
-            <intent-filter android:label="flutter_web_auth">
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <!-- Redirect URI: "kakao{NATIVE_APP_KEY}://oauth" -->
-                <data android:host="oauth"
-                        android:scheme="kakao5ec6bccfb97bbcc2672bfd22efe0b0af" />
-            </intent-filter>
-        </activity>
     </application>
 </manifest>

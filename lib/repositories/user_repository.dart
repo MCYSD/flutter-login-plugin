@@ -8,8 +8,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
-import 'package:kakao_flutter_sdk/auth.dart';
-import 'package:kakao_flutter_sdk/common.dart';
 
 final rootURL = "gs://mycounselor-c5110.appspot.com";
 
@@ -86,29 +84,6 @@ class UserRepository {
 
   Future<bool> isSignedIn() async {
     return _firebaseAuth.currentUser != null;
-  }
-
-  Future<dynamic> signInWithKakao() async {
-    try {
-      String authCode = await AuthCodeClient.instance.request(); // via browser
-      // String authCode = await AuthCodeClient.instance.requestWithTalk() // or with KakaoTalk
-      AccessTokenResponse token =
-          await AuthApi.instance.issueAccessToken(authCode);
-      TokenManager.instance.setToken(token);
-
-      print("Kakao token: ${token.accessToken}");
-
-      return "";
-    } on KakaoAuthException catch (e) {
-      print("****KakaoLoginFail cause ${e.message}");
-      return e.toString();
-    } on KakaoClientException catch (e) {
-      print("****KakaoLoginFail cause ${e.message}");
-      return e.toString();
-    } catch (e) {
-      print("****KakaoLoginFail cause ${e.toString()}");
-      return e.toString();
-    }
   }
 
   ///Signin with Google account

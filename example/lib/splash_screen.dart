@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:firebase_login/firebase_login.dart';
+import 'package:firebase_login/screens/login/components/login_social.dart';
 import 'package:firebase_login_example/home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -23,6 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
             MaterialPageRoute(
               builder: (context) => FirebaseLogin.firebaseLoginScreen(
                   homeScreen: HomeScreen(),
+                  loginSupports: [],
                   onLoginSuccess: (user) {
                     print("Login success: Username = ${user.displayName}");
                   }),
